@@ -56,7 +56,9 @@ extern "C" {
 /* maybe consider allocating and initializing a sys_sem ? */
 static inline void *rpmi_env_alloc_lock(void)
 {
-	return malloc(sizeof(struct sys_sem));
+	void *ret = malloc(sizeof(struct sys_sem));
+	sys_sem_init((struct sys_sem *)ret, 1, 1);
+	return ret;
 }
 
 static inline void rpmi_env_free_lock(void *lptr)

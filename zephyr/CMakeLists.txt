@@ -13,6 +13,7 @@ zephyr_library_sources(
   ${ZEPHYR_LIBRPMI_MODULE_DIR}/lib/rpmi_shmem.c
   ${ZEPHYR_LIBRPMI_MODULE_DIR}/lib/rpmi_transport_shmem.c
   ${ZEPHYR_LIBRPMI_MODULE_DIR}/lib/rpmi_transport.c
+  ${ZEPHYR_LIBRPMI_MODULE_DIR}/lib/rpmi_service_group_sysmsi.c
 )
 
   zephyr_include_directories(
