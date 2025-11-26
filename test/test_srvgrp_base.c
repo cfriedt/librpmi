@@ -70,7 +70,7 @@ static struct rpmi_test_scenario scenario_base_default = {
 	.init = test_scenario_default_init,
 	.cleanup = test_scenario_default_cleanup,
 
-	.num_tests = 7,
+	.num_tests = 8,
 	.tests = {
 		{
 			.name = "RPMI_BASE_SRV_ENABLE_NOTIFICATION",
@@ -123,7 +123,7 @@ static struct rpmi_test_scenario scenario_base_default = {
 				.service_id = RPMI_BASE_SRV_GET_PLATFORM_INFO,
 				.flags = RPMI_MSG_NORMAL_REQUEST,
 				.expected_data = &plat_info_val,
-				.expected_data_len = PLAT_INFO_LEN + sizeof(rpmi_uint32_t)*2,
+				.expected_data_len = PLAT_INFO_LEN + sizeof(rpmi_uint32_t) * 2,
 			},
 			.init_expected_data = test_init_expected_data_from_attrs,
 		},
@@ -151,6 +151,17 @@ static struct rpmi_test_scenario scenario_base_default = {
 				.expected_data_len = sizeof(attribs_expdata_default),
 			},
 			.init_expected_data = test_init_expected_data_from_attrs,
+		},
+		{
+			.name = "RPMI_INVALID_SRVGRP",
+			.attrs = {
+				.servicegroup_id = RPMI_SRVGRP_ID_MIN,
+				.service_id = (rpmi_uint8_t)42,
+				.flags = RPMI_MSG_NORMAL_REQUEST,
+				.expected_data = enable_notif_expdata_default,
+				.expected_data_len = sizeof(enable_notif_expdata_default),
+			},
+			.init_expected_data = NULL,
 		},
 	},
 };
