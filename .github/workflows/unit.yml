@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - zephyr
   pull_request:
     types:
       - opened
@@ -11,6 +12,7 @@ on:
       - synchronize
     branches:
       - main
+      - zephyr
 
 jobs:
   unit-test:
