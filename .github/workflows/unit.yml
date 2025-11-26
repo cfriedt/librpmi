@@ -18,10 +18,12 @@ jobs:
   unit-test:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-24.04, macos-latest]
     steps:
       - uses: actions/checkout@v4
       - shell: bash
+        timeout-minutes: 2
         run: |
           make -j check LIBRPMI_TEST=y
