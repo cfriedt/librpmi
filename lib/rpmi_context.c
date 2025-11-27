@@ -4,6 +4,7 @@
  * Copyright (c) 2024 Ventana Micro Systems Inc.
  */
 
+#include <stdio.h>
 #include <librpmi.h>
 
 #ifdef LIBRPMI_DEBUG
@@ -325,6 +326,11 @@ void rpmi_context_process_a2p_request(struct rpmi_context *cntx)
 	rmsg = cntx->req_msg;
 	amsg = cntx->ack_msg;
 	while (!rpmi_transport_dequeue(trans, RPMI_QUEUE_A2P_REQ, rmsg)) {
+		if (rmsg->header.servicegroup_id == 0)
+		{
+			printf("servicegroup_id: 0x%x\n", rmsg->header.servicegroup_id);
+		}
+
 		group = rpmi_context_find_group(cntx, rmsg->header.servicegroup_id);
 		if (!group) {
 			DPRINTF("%s: %s: service group ID 0x%x not found\n",
