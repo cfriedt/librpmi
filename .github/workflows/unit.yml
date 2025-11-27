@@ -24,4 +24,7 @@ jobs:
       - uses: actions/checkout@v4
       - shell: bash
         run: |
-          make -j check LIBRPMI_TEST=y
+          make -j check \
+            LIBRPMI_TEST=y \
+            LIBRPMI_DEBUG=y \
+            EXTRA_CFLAGS="-Wall -Wextra -Wno-unused-parameter -Werror"
